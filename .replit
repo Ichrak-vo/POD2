@@ -1,0 +1,3 @@
+run = "bash -lc 'mvn -DskipTests spring-boot:run'"
+language = "bash"
+entrypoint = "."

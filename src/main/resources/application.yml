@@ -1,0 +1,31 @@
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+pdf:
+  templates:
+    mapping:
+      "invoice:v1": "invoice.v1.html"
+      "delivery:v1": "delivery.v1.html"
+  output:
+    dir: ./results 
+  normalization:
+    rules:
+      "invoice:v1":
+        customer_name: ["$.customer.name", "$.client.nom"]
+        invoice_number: ["$.invoice.number", "$.facture.numero"]
+        issue_date: ["$.invoice.date"]
+        lines: ["$.items[*]", "$.lignes[*]"]
+      "report:v1":
+        title: ["$.title", "$.report.title"]
+        total: ["$.summary.total"]
+        items: ["$.items[*]"]
+        
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html      # URL de l'UI
+  api-docs:
+    path: /v3/api-docs
+server:
+  port: ${PORT:8080}

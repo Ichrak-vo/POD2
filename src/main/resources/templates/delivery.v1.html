@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- العنوان من المتغير title وإلا حسب الوضع -->
+  <title th:text="${title != null && !#strings.isEmpty(title)
+                    ? title
+                    : (mode=='RETURN' ? 'نموذج إثبات الإرجاع الجزئي' : 'نموذج إثبات التسليم الجزئي')}">
+    نموذج إثبات التسليم الجزئي
+  </title>
+
+  <style>
+    @page { size: A4; margin: 12mm; }
+    @font-face {
+      font-family: 'Noto Naskh Arabic';
+      src: url('file:///C:/Users/User/Documents/Vonoy/BETMS/Xchanger/tms/src/main/resources/fonts/NotoNaskhArabic-VariableFont_wght.ttf') format('truetype');
+      font-weight: 400; font-style: normal;
+    }
+    body { font-family: 'Noto Naskh Arabic', serif; font-size:13px; line-height:1.5; color:#000; direction:rtl; text-align:right; margin:0; }
+    .container { background:#fff; padding:16px; border-radius:8px; border:1px solid #ddd; width:90%; max-width:900px; margin:16px auto; box-shadow:2px 2px 10px rgba(0,0,0,0.06); }
+
+   /* ===== Header (sans traits visibles) ===== */
+    .header-card { border:1px solid #ddd; border-radius:10px; padding:12px; background:#fff; }
+    .header-table { width:100%; border-collapse:collapse; border:0; direction:ltr; }
+    .header-table td { border:0; background:transparent; padding:0; }
+
+    .header-cell-info {
+      vertical-align:top; text-align:left; line-height:1.5; font-size:12px; padding:0 8px 0 0;
+    }
+    .header-cell-info strong { font-weight:700; font-size:14px; display:inline-block; margin-bottom:2px; }
+    .header-cell-info a { color:#0366d6; text-decoration:none; }
+
+    .header-cell-logo {
+      width:200px; vertical-align:top; text-align:right;
+      padding-top:18px; /* ↓ descend un peu le logo */
+      white-space:nowrap;
+    }
+    .header-cell-logo img {
+      max-height:100px; /* ← taille du logo (augmente si besoin) */
+      width:auto; display:inline-block;
+    }
+    .title { margin:18px 0 6px 0; font-size:18px; font-weight:700; text-align:center; }
+
+    .meta { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap:6px 16px; border:1px solid #e5e5e5; border-radius:8px; padding:10px; margin-top:8px; background:#fafafa; }
+    .meta div b { display:inline-block; min-width:120px; }
+
+    table { width:100%; border-collapse:collapse; margin-top:14px; font-size:13px; text-align:center; }
+    th, td { border:1px solid #ddd; padding:6px; }
+    th { background:#f5f5f5; font-weight:700; }
+    thead { display: table-header-group; }
+    tfoot { display: table-footer-group; }
+    tr, img, .avoid-break { page-break-inside: avoid; }
+    .totals-row th, .totals-row td { background:#fbfbfb; font-weight:700; }
+
+    .footer { margin-top:18px; font-size:11px; text-align:center; color:#333; border:1px solid #ddd; border-radius:10px; padding:10px; }
+       </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== رأس الصفحة ===== -->
+    <!-- ===== رأس الصفحة (header en LTR : infos à gauche / logo à droite) ===== -->
+ <div class="header-card">
+      <table class="header-table">
+        <tr>
+          <td class="header-cell-info">
+            <strong th:text="${compName != null ? compName : 'Vonoy'}">Vonoy</strong><br/>
+            <span>Phone: </span>
+            <span th:text="${compTel1 != null ? compTel1 : '(+216) — — — — — — —'}">(+216) — — — — — — —</span><br/>
+            <span>Fax: </span>
+            <span th:text="${compTel2 != null ? compTel2 : '(+216) — — — — — — —'}">(+216) — — — — — — —</span><br/>
+            <a th:href="${'mailto:' + (emailadd != null ? emailadd : 'info@vonoy.co')}"
+               th:text="${emailadd != null ? emailadd : 'info@vonoy.co'}">info@vonoy.co</a><br/>
+            <a th:href="${link != null ? #strings.replace(link,'&','&amp;') : 'https://vonoy.co'}"
+               th:text="${link != null ? link : 'www.vonoy.co'}" target="_blank">www.vonoy.co</a><br/>
+            <span th:text="${address != null ? address : 'Tunisia — Address specified by the company'}">
+              Tunisia — Address specified by the company
+            </span>
+          </td>
+          <td class="header-cell-logo">
+            <img th:src="${logoBase64}" alt="Company logo" />
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+
+    <!-- ===== العنوان ===== -->
+    <div class="title"
+         th:text="${title != null && !#strings.isEmpty(title)
+                   ? title
+                   : (mode=='RETURN' ? 'نموذج إثبات الإرجاع الجزئي' : 'نموذج إثبات التسليم الجزئي')}">
+      نموذج إثبات التسليم الجزئي
+    </div>
+
+    <!-- ===== بيانات عامة (كل العبارات من متغيرات السياق) ===== -->
+    <div class="meta avoid-break">
+      <div>
+        <b th:text="${customerNameLabel != null ? customerNameLabel : 'اسم العميل :'}">اسم العميل :</b>
+        <span th:text="${customerName != null ? customerName : ''}">—</span>
+      </div>
+      <div>
+        <b th:text="${invNumberLabel != null ? invNumberLabel : 'رقم الفاتورة :'}">رقم الفاتورة :</b>
+        <span th:text="${invoiceNumber != null ? invoiceNumber : ''}">—</span>
+      </div>
+
+      <div>
+        <b th:text="${orderNumberLabel != null ? orderNumberLabel : 'رقم الطلب :'}">رقم الطلب :</b>
+        <span th:text="${salesOrder != null ? salesOrder : ''}">—</span>
+      </div>
+
+      <div>
+        <b th:text="${driverNameLabel != null ? driverNameLabel : 'اسم السائق :'}">اسم السائق :</b>
+        <span th:text="${driverName != null ? driverName : ''}">—</span>
+      </div>
+
+      <div>
+        <b th:text="${routeNumberLabel != null ? routeNumberLabel : 'رقم المسار :'}">رقم المسار :</b>
+        <span th:text="${routeId}">—</span>
+      </div>
+
+      <div>
+        <b th:text="${deliveryDateLabel != null ? deliveryDateLabel : 'تاريخ التسليم :'}">تاريخ التسليم :</b>
+        <span th:text="${deliveryDate != null ? deliveryDate : ''}">—</span>
+      </div>
+
+      <div>
+        <b th:text="${remarquesLabel != null ? remarquesLabel : 'ملاحظات'}">ملاحظات</b>
+        <span th:text="${reason != null ? reason : ''}">—</span>
+      </div>
+
+    </div>
+
+    <!-- ===== جدول الأصناف ===== -->
+    <table>
+      <thead>
+        <tr>
+          <th th:text="${SalesNumber != null ? SalesNumber : 'الرقم التسلسلي'}">الرقم التسلسلي</th>
+          <th th:text="${itemCode != null ? itemCode : 'رمز الصنف'}">رمز الصنف</th>
+          <th th:text="${description != null ? description : 'الوصف'}">الوصف</th>
+          <th th:text="${orderedQuantity != null ? orderedQuantity : 'الكمية المطلوبة'}">الكمية المطلوبة</th>
+          <th th:text="${returnedquantity != null ? returnedquantity : 'الكمية المُرجعة'}">الكمية المُرجعة</th>
+          <th th:text="${notdeliveredquantity != null ? notdeliveredquantity : 'الكمية غير المُسلمة'}">الكمية غير المُسلمة</th>
+          <th th:text="${deliveredQuantity != null ? deliveredQuantity : 'الكمية المُسلمة'}">الكمية المُسلمة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="it : ${items}">
+          <td th:text="${it.lineId}">1</td>
+          <td th:text="${it.itemCode}">ITEM-001</td>
+          <td th:text="${it.description}">منتج تجريبي</td>
+          <td th:text="${it.orderedQty}">100</td>
+          <td th:text="${it.returnedQty != null ? it.returnedQty : 0}">0</td>
+          <td th:text="${it.undeliveredQty != null ? it.undeliveredQty : 0}">5</td>
+          <td th:text="${
+                it.deliveredQty != null ?
+                  it.deliveredQty :
+                  ( (it.orderedQty != null ? it.orderedQty : 0)
+                    - (it.returnedQty != null ? it.returnedQty : 0)
+                    - (it.undeliveredQty != null ? it.undeliveredQty : 0) )
+              }">95</td>
+        </tr>
+
+        <!-- الإجماليات -->
+        <tr class="totals-row" th:if="${totals != null}">
+          <td colspan="3" th:text="${sum != null ? sum : 'المجموع'}">المجموع</td>
+          <td th:text="${totals.ordered}">100</td>
+          <td th:text="${totals.returned}">0</td>
+          <td th:text="${totals.undelivered}">5</td>
+          <td th:text="${totals.delivered}">95</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ===== تذييل ===== -->
+    <div class="footer">
+      <p th:text="${footerLine1 != null && !#strings.isEmpty(footerLine1)
+                   ? footerLine1
+                   : 'تم إنشاء هذا المستند تلقائيًا بواسطة نظام فونوي لإدارة النقل'}">
+        تم إنشاء هذا المستند تلقائيًا بواسطة نظام فونوي لإدارة النقل
+      </p>
+      <p th:text="${footerLine2 != null && !#strings.isEmpty(footerLine2)
+                   ? footerLine2
+                   : '© فونوي - جميع الحقوق محفوظة 2025'}">
+        © فونوي - جميع الحقوق محفوظة 2025
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

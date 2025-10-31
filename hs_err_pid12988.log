@@ -1,0 +1,198 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 130023424 bytes for Failed to commit area from 0x0000000084a00000 to 0x000000008c600000 of length 130023424.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (src/hotspot/os/windows/os_windows.cpp:3627), pid=12988, tid=9420
+#
+# JRE version:  (11.0.15) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.15+0-b2043.56-8887301, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dclassworlds.conf=C:\Program Files\apache-maven\apache-maven-3.9.5\bin\m2.conf -Dmaven.home=C:\Program Files\apache-maven\apache-maven-3.9.5 -Dlibrary.jansi.path=C:\Program Files\apache-maven\apache-maven-3.9.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=C:\Users\User\Documents\Vonoy\pdf-pipeline org.codehaus.plexus.classworlds.launcher.Launcher clean spring-boot:run
+
+Host: 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz, 12 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.5915)
+Time: Wed Oct 29 12:42:30 2025 GMT elapsed time: 0.019278 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001cbca70f000):  JavaThread "Unknown thread" [_thread_in_vm, id=9420, stack(0x0000006f61d00000,0x0000006f61e00000)]
+
+Stack: [0x0000006f61d00000,0x0000006f61e00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x64135a]
+V  [jvm.dll+0x7d39f9]
+V  [jvm.dll+0x7d51b9]
+V  [jvm.dll+0x7d58a3]
+V  [jvm.dll+0x2691c5]
+V  [jvm.dll+0x63e4e9]
+V  [jvm.dll+0x632985]
+V  [jvm.dll+0x3231ac]
+V  [jvm.dll+0x323032]
+V  [jvm.dll+0x327c06]
+V  [jvm.dll+0x36ffa2]
+V  [jvm.dll+0x36fa01]
+V  [jvm.dll+0x2fea28]
+V  [jvm.dll+0x2ffb25]
+V  [jvm.dll+0x7accd7]
+V  [jvm.dll+0x7ae49f]
+V  [jvm.dll+0x37d299]
+V  [jvm.dll+0x78ef9f]
+V  [jvm.dll+0x3ec847]
+V  [jvm.dll+0x3eed31]
+C  [jli.dll+0x52cb]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17374]
+C  [ntdll.dll+0x4cc91]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000001cbc84453f0, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000001cbca725800 GCTaskThread "GC Thread#0" [stack: 0x0000006f61e00000,0x0000006f61f00000] [id=14700]
+  0x000001cbca759000 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000006f61f00000,0x0000006f62000000] [id=9012]
+  0x000001cbca75a800 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000006f62000000,0x0000006f62100000] [id=12052]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa4f6cf3e7]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000001cbca709b70] Heap_lock - owner thread: 0x000001cbca70f000
+
+Heap address: 0x0000000084a00000, size: 1974 MB, Compressed Oops mode: Non-zero based: 0x0000000084a00000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.006 Loaded shared library C:\Program Files\Android\Android Studio\jbr\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff6cb630000 - 0x00007ff6cb63a000 	C:\Program Files\Android\Android Studio\jbr\bin\java.exe
+0x00007ffaa59d0000 - 0x00007ffaa5bc8000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffaa4be0000 - 0x00007ffaa4ca2000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffaa33e0000 - 0x00007ffaa36d6000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffaa32b0000 - 0x00007ffaa33b0000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffa9e2b0000 - 0x00007ffa9e2c7000 	C:\Program Files\Android\Android Studio\jbr\bin\jli.dll
+0x00007ffa87b90000 - 0x00007ffa87bab000 	C:\Program Files\Android\Android Studio\jbr\bin\VCRUNTIME140.dll
+0x00007ffaa46c0000 - 0x00007ffaa4861000 	C:\Windows\System32\USER32.dll
+0x00007ffa876c0000 - 0x00007ffa8795b000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.6456_none_60b8a6cb71f64256\COMCTL32.dll
+0x00007ffaa33b0000 - 0x00007ffaa33d2000 	C:\Windows\System32\win32u.dll
+0x00007ffaa4900000 - 0x00007ffaa499e000 	C:\Windows\System32\msvcrt.dll
+0x00007ffaa4b30000 - 0x00007ffaa4b5b000 	C:\Windows\System32\GDI32.dll
+0x00007ffaa3840000 - 0x00007ffaa3959000 	C:\Windows\System32\gdi32full.dll
+0x00007ffaa3060000 - 0x00007ffaa30fd000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffaa4690000 - 0x00007ffaa46bf000 	C:\Windows\System32\IMM32.DLL
+0x00007ffa6de70000 - 0x00007ffa6defd000 	C:\Program Files\Android\Android Studio\jbr\bin\msvcp140.dll
+0x00007ffa82ed0000 - 0x00007ffa82edc000 	C:\Windows\SYSTEM32\VCRUNTIME140_1.dll
+0x00007ffa4f3c0000 - 0x00007ffa4ff7c000 	C:\Program Files\Android\Android Studio\jbr\bin\server\jvm.dll
+0x00007ffaa4570000 - 0x00007ffaa4621000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffaa5840000 - 0x00007ffaa58df000 	C:\Windows\System32\sechost.dll
+0x00007ffaa4d20000 - 0x00007ffaa4e40000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffaa3100000 - 0x00007ffaa3127000 	C:\Windows\System32\bcrypt.dll
+0x00007ffaa5040000 - 0x00007ffaa5048000 	C:\Windows\System32\PSAPI.DLL
+0x00007ffa992e0000 - 0x00007ffa99307000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffa7f700000 - 0x00007ffa7f709000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffa9bc20000 - 0x00007ffa9bc2a000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffaa4cb0000 - 0x00007ffaa4d1b000 	C:\Windows\System32\WS2_32.dll
+0x00007ffaa1880000 - 0x00007ffaa1892000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffa9e2a0000 - 0x00007ffa9e2b0000 	C:\Program Files\Android\Android Studio\jbr\bin\verify.dll
+0x00007ffaa0d80000 - 0x00007ffaa0f81000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffa80d60000 - 0x00007ffa80d94000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffaa3960000 - 0x00007ffaa39e2000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffa85a80000 - 0x00007ffa85aa8000 	C:\Program Files\Android\Android Studio\jbr\bin\java.dll
+0x00007ffa8d5e0000 - 0x00007ffa8d5ea000 	C:\Program Files\Android\Android Studio\jbr\bin\jimage.dll
+0x00007ffa87b70000 - 0x00007ffa87b88000 	C:\Program Files\Android\Android Studio\jbr\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Android\Android Studio\jbr\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.6456_none_60b8a6cb71f64256;C:\Program Files\Android\Android Studio\jbr\bin\server
+
+VM Arguments:
+jvm_args: -Dclassworlds.conf=C:\Program Files\apache-maven\apache-maven-3.9.5\bin\m2.conf -Dmaven.home=C:\Program Files\apache-maven\apache-maven-3.9.5 -Dlibrary.jansi.path=C:\Program Files\apache-maven\apache-maven-3.9.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=C:\Users\User\Documents\Vonoy\pdf-pipeline 
+java_command: org.codehaus.plexus.classworlds.launcher.Launcher clean spring-boot:run
+java_class_path (initial): C:\Program Files\apache-maven\apache-maven-3.9.5\boot\plexus-classworlds-2.7.0.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 130023424                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2069889024                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5836300                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122910970                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122910970                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Android\Android Studio\jbr
+PATH=C:\Program Files\PowerShell\7;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\app\User\product\21c\dbhomeXE\bin;C:\Program Files\Java\jdk-17\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\src\flutter\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Git\cmd;C:\Program Files\MongoDB\Server\6.0\bin;C:\Users\User\Desktop\mongosh-1.8.0-win32-x64\bin;C:\Python311\Scripts\;C:\Program Files\apache-maven\apache-maven-3.9.5\bin;C:\ProgramData\anaconda3;C:\Program Files\PowerShell\7;C:\ProgramData\anaconda3\Scripts;C:\ProgramData\Anaconda3\Library\bin;D:\openssl\bin;D:\Apache24\bin;C:\spring-3.1.5\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\User\AppData\Roaming\nvm;C:\Users\User\AppData\Roaming\nvm\v18.20.4;C:\Program Files\Java\jdk-17\bin;C:\Program Files\Tesseract-OCR;C:\Users\User\AppData\Roaming\nvm;%NVM_SYMLINK%;C:\Users\User\AppData\Local\Programs\Microsoft VS Code;C:\Users\User\AppData\Roaming\Python\Python311\Scripts;C:\chromedriver-win64;C:\Program Files\PowerShell\7-preview\preview;C:\Program Files\TortoiseGit\bin;C:\Program Files\PowerShell\7\;C:\Program Files\CMake\bin;C:\src\flutter\bin;C:\src\flutter\bin;C:\Program Files\PowerShell\7;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\app\User\product\21c\dbhomeXE\bin;C:\Program Files\Java\jdk-17\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corpor
+USERNAME=User
+LANG=en_US.UTF-8
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 141 Stepping 1, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.5915)
+OS uptime: 0 days 1:03 hours
+Hyper-V role detected
+
+CPU:total 12 (initial active 12) (6 cores per cpu, 2 threads per core) family 6 model 141 stepping 1 microcode 0x26, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, evex, sha, fma
+
+Memory: 4k page, system-wide physical 7893M (798M free)
+TotalPageFile size 16906M (AvailPageFile size 90M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 64M, peak: 188M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.15+0-b2043.56-8887301) for windows-amd64 JRE (11.0.15+0-b2043.56-8887301), built on Jul 29 2022 23:19:47 by "builduser" with unknown MS VC++:1929
+
+END.
