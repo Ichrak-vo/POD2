@@ -28,4 +28,4 @@ springdoc:
   api-docs:
     path: /v3/api-docs
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8085}

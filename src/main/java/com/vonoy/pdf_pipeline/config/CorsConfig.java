@@ -16,8 +16,8 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                             "http://localhost:8080",  // backend local
-                            "http://localhost:60854",  // Flutter web dev
-                            "http://127.0.0.1:60854",
+                            "http://localhost:51575",  // Flutter web dev
+                            "http://127.0.0.1:51575",
                             "http://localhost:4200",  // Angular, si tu l’as aussi
                             "http://0.0.0.0:8080"
                         )
